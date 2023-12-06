@@ -1,3 +1,21 @@
+<?php
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['addPassword'])) {
+        $website = $_POST['website'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $passwordManager->addPassword($website, $username, $password);
+    } elseif (isset($_POST['viewPasswords'])) {
+        $passwords = $passwordManager->getAllPasswords();
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,3 +44,4 @@
 <form method="post">
     <button type="submit" name="viewPasswords">View All Passwords</button>
 </form>
+

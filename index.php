@@ -1,5 +1,24 @@
 <?php
 
+session_start();
+
+class PasswordManager {
+    private $Allpasswords = [];
+
+    public function addPassword($website, $username, $password) {
+        $this->Allpasswords[$website] = ['username' => $username, 'password' => $password];
+    }
+
+    public function getPassword($website) {
+        return isset($this->Allpasswords[$website]) ? $this->Allpasswords[$website] : null;
+    }
+
+    public function getAllPasswords() {
+        return $this->Allpasswords;
+    }
+}
+
+$passwordManager = new PasswordManager();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['addPassword'])) {
